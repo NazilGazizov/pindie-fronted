@@ -54,6 +54,11 @@
     4px -4px 0 black;
 }
 
+.menu__link_active {
+  background-color: #ffff00;
+  pointer-events: none;
+}
+
 .menu__link:hover {
   background-color: #ffff00;
 }
