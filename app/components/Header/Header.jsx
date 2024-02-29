@@ -78,7 +78,12 @@ export const Header = () => {
           </li>
         </ul>
         <div className={Styles['auth']}>
-          <button className={Styles['auth__button']} onClick={openPopup}>Войти</button>
+        {
+  pathname === "/vote" ? 
+  <button className={Styles['auth__button']}>Войти</button>
+  :
+<button className={Styles['auth__button']} onClick={openPopup}>Войти</button>
+}
         </div>
       </nav>
       <Overlay isOpened={popupIsOpened} close={closePopup}/>

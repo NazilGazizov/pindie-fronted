@@ -2,10 +2,13 @@
 import { getGameById } from "@/app/data/data-utils";
 import Styles from "./Game.module.css";
 import { GameNotFound } from "@/app/components/GameNotFound/GameNotFound";
+import { useRouter } from "next/navigation";
 
 export default function GamePage(props) {
+
 const game = getGameById(props.params.id);
-console.log(props)
+const router = useRouter();
+
   return (
     <main className="main">
       {
@@ -24,7 +27,7 @@ console.log(props)
             </div>
             <div className={Styles["about__vote"]}>
               <p className={Styles["about__vote-amount"]}>За игру уже проголосовали: <span className={Styles["about__accent"]}>{game.users.length}</span></p>
-              <button onClick={() => {}} className={`button ${Styles["about__vote-button"]}`}>Голосовать</button>
+              <button onClick={() => {router.push('/vote')}} className={`button ${Styles["about__vote-button"]}`}>Голосовать</button>
             </div>
           </section>
         </>
