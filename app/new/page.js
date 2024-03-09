@@ -1,9 +1,10 @@
+import { getNormalizedGamesDataByCategory } from "../api/api-utils";
+import { endpoints } from "../api/config";
 import CardList from "../components/CardsList/CardList";
-import { getGamesByCategory } from "../data/data-utils";
 
-export default function New() {
+export default async function New() {
     
-    const newGames = getGamesByCategory("new");
+    const newGames = await getNormalizedGamesDataByCategory(endpoints.games,"new");
 
     return (
         <CardList id="new" title="Новинки" data={newGames}/>

@@ -80,7 +80,7 @@ export const Header = () => {
         <div className={Styles['auth']}>
         {
   pathname === "/vote" ? 
-  <button className={Styles['auth__button']}>Войти</button>
+  <button disabled className={Styles['auth__button']} onClick={openPopup}>Войти</button>
   :
 <button className={Styles['auth__button']} onClick={openPopup}>Войти</button>
 }

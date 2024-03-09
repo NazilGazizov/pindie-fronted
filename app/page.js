@@ -1,14 +1,13 @@
-import { getGamesByCategory } from "./data/data-utils";
-import Image from "next/image";
-import styles from "./page.module.css";
 import { Banner } from "./components/Banner/Banner";
 import { Promo } from "./components/Promo/Promo";
 import CardList from "./components/CardsList/CardList";
+import { getNormalizedGamesDataByCategory } from "./api/api-utils";
+import { endpoints } from "./api/config";
 
-export default function Home() {
+export default async function Home() {
 
-  const popularGames = getGamesByCategory("popular");
-  const newGames = getGamesByCategory("new");
+  const popularGames = await getNormalizedGamesDataByCategory(endpoints.games, "popular");
+  const newGames = await getNormalizedGamesDataByCategory(endpoints.games,"new");
 
   return (
     <main className="main">

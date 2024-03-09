@@ -1,13 +1,27 @@
 "use client"
-import { getGameById } from "@/app/data/data-utils";
+
 import Styles from "./Game.module.css";
 import { GameNotFound } from "@/app/components/GameNotFound/GameNotFound";
-import { useRouter } from "next/navigation";
+import { useRouter }  from "next/navigation";
+import { useEffect, useState } from "react";
+import { getNormalizedGameDataById, isResponseOk } from "@/app/api/api-utils";
+import { endpoints } from "@/app/api/config";
+import { Preloader } from "@/app/components/Preloader/Preloader";
 
 export default function GamePage(props) {
 
-const game = getGameById(props.params.id);
-const router = useRouter();
+  const router = useRouter();
+  const [game, setGame] = useState();
+  const [preloaderVisible, setPreloaderVisible] = useState(true);
+  
+  useEffect(() => {
+    async function fetchData() {
+        const game = await getNormalizedGameDataById(endpoints.games, props.params.id);
+        isResponseOk(game) ? setGame(game) : setGame(null);
+        setPreloaderVisible(false);
+    }
+    fetchData();
+}, [])
 
   return (
     <main className="main">
@@ -31,10 +45,13 @@ const router = useRouter();
             </div>
           </section>
         </>
-    ) : (
-        <section className={Styles['game']}>
-            <GameNotFound/>
-        </section>
+    ) : preloaderVisible ? (
+      <Preloader />
+      )
+    : ( 
+    <section className={Styles['game']}>
+      <GameNotFound/>
+    </section>
     )
 }
     </main>
