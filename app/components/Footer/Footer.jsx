@@ -19,13 +19,13 @@ export const Footer = () => {
 }
         <ul className={Styles['social-list']}>
         <li className={Styles['social-list__item']}>
-            <a href="" className={`button ${Styles.social_list_link}`}>YT</a>
+            <a href="https://www.youtube.com" target="_blank" className={`button ${Styles.social_list_link}`}>YT</a>
         </li>
         <li className={Styles['social-list__item']}>
-            <a href="" className={`button ${Styles.social_list_link}`}>ВК</a>
+            <a href="https://vk.com" target="_blank" className={`button ${Styles.social_list_link}`}>ВК</a>
         </li>
         <li className={Styles['social-list__item']}>
-            <a href="" className={`button ${Styles.social_list_link}`}>TG</a>
+            <a href="https://weba.telegram.org" target="_blank" className={`button ${Styles.social_list_link}`}>TG</a>
         </li>
         </ul>
     </footer>
