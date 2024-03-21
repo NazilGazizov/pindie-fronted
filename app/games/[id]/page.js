@@ -41,7 +41,7 @@ const handleVote = async () => {
     setGame(() => {
       return {
         ...game,
-        users: [...game.users, currentUser],
+        users: [...game.users, authContext.user],
       };
     });
   }
