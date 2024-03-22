@@ -1,7 +1,7 @@
 "use client";
 import { useGetDataByCategory } from "../api/api-hooks";
 import { endpoints } from "../api/config";
-import CardList from "../components/CardsList/CardList";
+import CardsListSection from "../components/CardsListSection/CardsListSection";
 import { Preloader } from "../components/Preloader/Preloader";
 
 export default function New() {
@@ -11,7 +11,7 @@ export default function New() {
     return (
     <main className="main-inner">
         {newGames ? (
-        <CardList id="new" title="Новинки" data={newGames} />
+        <CardsListSection id="new" title="Новинки" data={newGames} />
         ) : (
         <Preloader/>
         )}

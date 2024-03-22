@@ -1,12 +1,11 @@
 import React from "react";
-import Styles from './CardsList.module.css'
+import Styles from './CardsListSection.module.css'
 import Card from "../Card/Card";
 import Link from "next/link";
 
 const CardList = (props) => {
   return (
     <section className={Styles["list-section"]}>
-    <h2 className={Styles["list-section__title"]} id={props.id}>{props.title}</h2>
     <ul className={Styles["cards-list"]}>
         {props.data.map((item) => {
             return (
@@ -21,4 +20,5 @@ const CardList = (props) => {
 </section>
   );
 };
+
 export default CardList;

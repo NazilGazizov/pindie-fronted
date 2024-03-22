@@ -33,7 +33,7 @@ useEffect(() => {
 
 const handleVote = async () => {
   const jwt = authContext.token;
-  let usersIdArray = game.users.length ?   game.users.map((user) => authContext.user.id) : [];
+  let usersIdArray = game.users.length ?   game.users.map((user) => user.id) : [];
   usersIdArray.push(authContext.user.id);
   const response = await vote(`${endpoints.games}/${game.id}`, jwt, usersIdArray);
   if (isResponseOk(response)) {
@@ -41,7 +41,7 @@ const handleVote = async () => {
     setGame(() => {
       return {
         ...game,
-        users: [...game.users, currentUser],
+        users: [...game.users, authContext.user],
       };
     });
   }
