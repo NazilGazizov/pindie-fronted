@@ -20,6 +20,10 @@
   width: 100%;
 }
 
+.logo__image-2 {
+  width: 140px;
+}
+
 .menu {
   display: flex;
   width: 90%;

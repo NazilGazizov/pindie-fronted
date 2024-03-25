@@ -4,8 +4,10 @@ import { endpoints } from "../api/config";
 
 export const useStore = create((set) => ({
     isAuth: false,
+    isRegister: true,
     user: null,
     token: null,
+    popupIsOpened: false,
 
     login: (user, token) => {
         set({isAuth:true, user, token});
@@ -30,4 +32,16 @@ export const useStore = create((set) => ({
             set({ isAuth: false, user: null, token: null });
         }
     },
+    openPopup: () => {
+        set({popupIsOpened: true})
+    },
+    closePopup: () => {
+        set({popupIsOpened: false})
+    },
+    registration: () => {
+        set({isRegister: false})
+    },
+    authorize: () => {
+        set({isRegister: true})
+    }
 }));

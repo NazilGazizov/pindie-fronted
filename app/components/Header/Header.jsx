@@ -1,5 +1,4 @@
 "use client"
-import { useState } from 'react'
 import Styles from './Header.module.css'
 import { Overlay } from '../Overlay/Overlay'
 import { Popup } from '../Popup/Popup'
@@ -7,21 +6,16 @@ import { AuthForm } from '../AuthForm/AuthForm'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useStore } from '@/app/store/app-store'
+import { RegisterForm } from '../RegisterForm/RegisterForm'
+
 
 export const Header = () => {
 
-  const [popupIsOpened, setPopupIsOpened] = useState(false);
   const pathname = usePathname();
-  const authContext = useStore();
+  const store = useStore();
 
-  const openPopup = () => {
-    setPopupIsOpened(true);
-  };
-  const closePopup = () => {
-    setPopupIsOpened(false);
-  };
   const handleLogout = () => {
-    authContext.logout();
+    store.logout();
   };
 
   return (
@@ -82,13 +76,13 @@ export const Header = () => {
           </li>
         </ul>
         <div className={Styles['auth']}>
-          {authContext.isAuth ? <button className={Styles['auth__button']} onClick={handleLogout}>Выйти</button>
-          : <button className={Styles['auth__button']} onClick={openPopup}>Войти</button>}
+          {store.isAuth ? <button className={Styles['auth__button']} onClick={handleLogout}>Выйти</button>
+          : <button className={Styles['auth__button']} onClick={store.openPopup}>Войти</button>}
         </div>
       </nav>
-      <Overlay isOpened={popupIsOpened} close={closePopup}/>
-      <Popup isOpened={popupIsOpened} close={closePopup}>
-          <AuthForm close={closePopup}/>
+      <Overlay/>
+      <Popup>
+          {store.isRegister ? <AuthForm/> : <RegisterForm/>}
       </Popup>
     </header>
   )

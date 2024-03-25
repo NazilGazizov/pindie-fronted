@@ -5,11 +5,11 @@ import { authorize, isResponseOk} from '@/app/api/api-utils';
 import { endpoints } from '@/app/api/config';
 import { useStore } from '@/app/store/app-store';
 
-export const AuthForm = (props) => {
+export const AuthForm = () => {
 
   const [authData, setAuthData] = useState({ identifier: "", password: "" });
   const [message, setMessage] = useState({ status: null, text: null });
-  const authContext = useStore();
+  const store = useStore();
 
   const handleInput = (e) => {
     setAuthData({ ...authData, [e.target.name]: e.target.value });
@@ -19,27 +19,36 @@ export const AuthForm = (props) => {
     e.preventDefault();
     const userData = await authorize(endpoints.auth, authData);
     if (isResponseOk(userData)) {
-      authContext.login(userData.user, userData.jwt)
+      store.login(userData.user, userData.jwt)
       setMessage({ status: "success", text: "Вы авторизовались!" });
     } else {
       setMessage({ status: "error", text: "Неверные почта или пароль" });
     }
   }
 
+  const handelReset = () => {
+    setAuthData({ identifier: "", password: "" });
+  }
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    store.registration();
+  }
+
   useEffect(() => {
     let timer; 
-    if (authContext.user) {
+    if (store.user) {
       timer = setTimeout(() => {
-        props.close();
+        store.closePopup();
         setMessage({ status: null, text: null });
       }, 1000);
       
     }
     return () => clearTimeout(timer);
-  }, [authContext.user]);
+  }, [store.user]);
 
   return (
-    <form className={Styles['form']} onSubmit={handleSubmit}>
+    <form className={Styles['form']}>
       <h2 className={Styles['form__title']}>Авторизация</h2>
       <div className={Styles['form__fields']}>
         <label className={Styles['form__field']}>
@@ -54,9 +63,12 @@ export const AuthForm = (props) => {
       {message.status && (
         <p className={Styles["form__message"]}>{message.text}</p>
       )}
-      <div className={Styles['form__actions']}>
-        <button className={Styles['form__reset']} type="reset">Очистить</button>
-        <button className={Styles['form__submit']} type="submit">Войти</button>
+      <div className={Styles['form__actions-2']}>
+        <div className={Styles['form__actions']}>
+          <button className={Styles['form__reset']} type="reset" onClick={handelReset}>Очистить</button>
+          <button className={Styles['form__submit']} type="submit" onClick={handleSubmit}>Войти</button>
+        </div>
+      <button className={Styles['form__register']} onClick={handleRegister}>Нет учетной записи</button>
       </div>
     </form>
   ) 

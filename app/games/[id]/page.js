@@ -12,7 +12,7 @@ export default function GamePage(props) {
   const [isVoted, setIsVoted] = useState(false);
   const [game, setGame] = useState();
   const [preloaderVisible, setPreloaderVisible] = useState(true);
-  const authContext = useStore();
+  const store = useStore();
   
 useEffect(() => {
   async function fetchData() {
@@ -24,24 +24,24 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-  if (authContext.user && game) {
-    setIsVoted(checkIfUserVoted(game, authContext.user.id));
+  if (store.user && game) {
+    setIsVoted(checkIfUserVoted(game, store.user.id));
   } else {
         setIsVoted(false);
     }
-}, [authContext.user, game]);
+}, [store.user, game]);
 
 const handleVote = async () => {
-  const jwt = authContext.token;
+  const jwt = store.token;
   let usersIdArray = game.users.length ?   game.users.map((user) => user.id) : [];
-  usersIdArray.push(authContext.user.id);
+  usersIdArray.push(store.user.id);
   const response = await vote(`${endpoints.games}/${game.id}`, jwt, usersIdArray);
   if (isResponseOk(response)) {
     setIsVoted(true);
     setGame(() => {
       return {
         ...game,
-        users: [...game.users, authContext.user],
+        users: [...game.users, store.user],
       };
     });
   }
@@ -65,7 +65,7 @@ const handleVote = async () => {
             </div>
             <div className={Styles["about__vote"]}>
               <p className={Styles["about__vote-amount"]}>За игру уже проголосовали: <span className={Styles["about__accent"]}>{game.users.length}</span></p>
-              <button disabled={!authContext.isAuth || isVoted} className={`button ${Styles["about__vote-button"]}` } onClick={handleVote}>{isVoted ? "Голос учтён" : "Голосовать"}</button>
+              <button disabled={!store.isAuth || isVoted} className={`button ${Styles["about__vote-button"]}` } onClick={handleVote}>{isVoted ? "Голос учтён" : "Голосовать"}</button>
             </div>
           </section>
         </>

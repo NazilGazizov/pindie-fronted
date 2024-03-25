@@ -41,14 +41,6 @@
 
 .form__actions {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  gap: 8px;
-}
-
-.form__actions-2 {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
@@ -71,33 +63,7 @@
   background-color: #000;
 }
 
-.form__register:hover ~ .form__submit{
-  color: #000;
-  background-color: transparent;
-}
-
-.form__reset {
-  font-family: "Rubic One", sans-serif;
-  background-color: transparent;
-  font-size: 20px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  border: none;
-  padding: 16px 24px;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
-
-.form__reset:hover {
-  color: yellow;
-  background-color: #000;
-}
-
-.form__reset:disabled {
-  opacity: .9;
-  pointer-events: none;
-}
-
-.form__reset:hover ~ .form__submit {
+.form__register:hover + .form__submit {
   color: #000;
   background-color: transparent;
 }
@@ -122,4 +88,3 @@
   opacity: .5;
   pointer-events: none;
 }
-
