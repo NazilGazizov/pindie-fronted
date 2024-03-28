@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
-import { getNormalizedGamesDataByCategory } from "./api-utils";
+import { getData, getNormalizedGamesDataByCategory } from "./api-utils";
 import { endpoints } from "./config";
 
 export const useGetDataByCategory = (endpoints, category) => {

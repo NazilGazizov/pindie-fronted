@@ -52,6 +52,7 @@ export const authorize = async (url, data) => {
         const result = await response.json();
         return result;
     } catch (error) {
+        console.log(error);
         return error;
     }
 };

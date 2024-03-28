@@ -33,14 +33,13 @@ export const RegisterForm = () => {
     useEffect(() => {
         let timer; 
         if (store.user) {
-          timer = setTimeout(() => {
-            store.closePopup();
-            setMessage({ status: null, text: null });
-          }, 1000);
-          
+            timer = setTimeout(() => {
+                store.closePopup();
+                setMessage({ status: null, text: null });
+            }, 1000);
         }
         return () => clearTimeout(timer);
-      }, [store.user]);
+    }, [store.user]);
     
     return (
     <form className={Styles['form']}>
@@ -67,5 +66,5 @@ export const RegisterForm = () => {
             <button className={Styles['form__register']} type='reset' onClick={haveAcc}>Уже есть аккаунт</button>
         </div>
     </form>
-  ) 
+    ) 
 };

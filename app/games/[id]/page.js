@@ -1,6 +1,6 @@
 "use client"
 import Styles from "./Game.module.css";
-import { GameNotFound } from "@/app/components/GameNotFound/GameNotFound";
+import { GameNotFound } from "@/app/components/NotFound/GameNotFound";
 import { useEffect, useState } from "react";
 import { checkIfUserVoted, getNormalizedGameDataById, isResponseOk, vote } from "@/app/api/api-utils";
 import { endpoints } from "@/app/api/config";

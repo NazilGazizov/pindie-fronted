@@ -20,8 +20,10 @@
   width: 100%;
 }
 
-.logo__image-2 {
-  width: 140px;
+.logo-profile {
+  display: block;
+  padding: 14px;
+  align-self: center;
 }
 
 .menu {
@@ -37,6 +39,7 @@
   gap: 4px;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   width: 100%;
+  border-right: 4px solid black;
 }
 
 .menu__item {
@@ -115,7 +118,7 @@
 }
 
 @media (width <= 768px) {
-  .logo {
+  .logo, .logo-profile {
     justify-self: center;
   }
 

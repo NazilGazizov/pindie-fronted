@@ -1,0 +1,76 @@
+.not__found {
+    padding: 72px 96px;
+}
+
+.main {
+    padding: 72px;
+}
+
+.profile {
+    width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    border: 4px solid black;
+    border-radius: 15px;
+}
+
+.basic__information {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 32px;
+    background-color: #FFFF00;
+    border-radius: 15px;
+}
+
+.avatar {
+    width: 250px;
+    border-radius: 50%;
+}
+
+.full__information {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background-color: #FFF;
+    padding: 32px;
+    border-radius: 15px;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title__text {
+    font-weight: 900;
+    font-size: 32px;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-color: black;
+}
+
+.information {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.id, .email {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.games {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

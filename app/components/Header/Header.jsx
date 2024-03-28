@@ -4,7 +4,7 @@ import { Overlay } from '../Overlay/Overlay'
 import { Popup } from '../Popup/Popup'
 import { AuthForm } from '../AuthForm/AuthForm'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useStore } from '@/app/store/app-store'
 import { RegisterForm } from '../RegisterForm/RegisterForm'
 
@@ -13,10 +13,12 @@ export const Header = () => {
 
   const pathname = usePathname();
   const store = useStore();
+  const router = useRouter();
 
   const handleLogout = () => {
     store.logout();
-  };
+    router.push('/')
+};
 
   return (
     <header className={Styles['header']}>
@@ -75,10 +77,8 @@ export const Header = () => {
             </Link>
           </li>
         </ul>
-        <div className={Styles['auth']}>
-          {store.isAuth ? <button className={Styles['auth__button']} onClick={handleLogout}>Выйти</button>
-          : <button className={Styles['auth__button']} onClick={store.openPopup}>Войти</button>}
-        </div>
+          {store.isAuth ? ( pathname === '/profile' ? <div className={Styles['auth']}><button className={Styles['auth__button']} onClick={handleLogout}>Выйти</button></div> : <Link href="/profile" className={Styles['logo-profile']}><img src='/images/user (7).png'/></Link>)
+          : <div className={Styles['auth']}><button className={Styles['auth__button']} onClick={store.openPopup}>Войти</button></div>}
       </nav>
       <Overlay/>
       <Popup>
