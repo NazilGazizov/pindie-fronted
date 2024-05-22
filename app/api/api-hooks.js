@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getData, getNormalizedGamesDataByCategory } from "./api-utils";
+import { getNormalizedGamesDataByCategory } from "./api-utils";
 
 export const useGetDataByCategory = (endpoints, category) => {
     const [data, setData] = useState(null);
