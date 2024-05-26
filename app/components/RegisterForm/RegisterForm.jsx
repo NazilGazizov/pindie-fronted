@@ -16,7 +16,9 @@ export const RegisterForm = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        const userData = await authorize(endpoints.register, authData);
+        await authorize(endpoints.register, authData);
+        const userData = await authorize(endpoints.auth, authData);
+        console.log(userData);
         if (isResponseOk(userData)) {
             store.login({ ...userData, id: userData._id }, userData.jwt);
             setMessage({ status: "success", text: "Вы зарегистрировались!" });
